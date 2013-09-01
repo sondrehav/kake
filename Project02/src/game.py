@@ -19,12 +19,13 @@ mousex, mousey = 0, 0
 playerXVel, playerYVel = 0, 0
 playerXPos, playerYPos = 50, 50
 
-catMaxSpeed = 10
+catMaxSpeed = 5
+catAcc = 0.25
 
 catMoveLeft, catMoveRight, catMoveUp, catMoveDown = False, False, False, False
 
 fontObj = pygame.font.Font('freesansbold.ttf', 32)
-msg = 'Hello world!'
+msg = 'Katt'
 
 while True:
     windowSurfaceObj.fill(whiteColor)
@@ -32,9 +33,9 @@ while True:
     windowSurfaceObj.blit(catSurfaceObj, (playerXPos, playerYPos))
     
 
-    msgSurfaceObj = fontObj.render(msg, False, blueColor)
+    msgSurfaceObj = fontObj.render(msg, True, blueColor)
     msgRectobj = msgSurfaceObj.get_rect()
-    msgRectobj.topleft = (10, 20)
+    msgRectobj.topleft = (width/2 - (msgRectobj.width/2), 10)
     windowSurfaceObj.blit(msgSurfaceObj, msgRectobj)
 
     for event in pygame.event.get():
@@ -71,16 +72,16 @@ while True:
     
     if catMoveLeft:
         if playerXVel > -catMaxSpeed:
-            playerXVel -= 0.5
+            playerXVel -= catAcc
     if catMoveRight:
         if playerXVel < catMaxSpeed:
-            playerXVel += 0.5
+            playerXVel += catAcc
     if catMoveUp:
         if playerYVel > -catMaxSpeed:
-            playerYVel -= 0.5
+            playerYVel -= catAcc
     if catMoveDown:
         if playerYVel < catMaxSpeed:
-            playerYVel += 0.5
+            playerYVel += catAcc
     
     if catMoveLeft == False and catMoveRight == False:
         if playerXVel > 0:
@@ -113,5 +114,7 @@ while True:
     if playerYPos > height - 50:
         playerYPos = height - 50
         playerYVel = 0
+
+
     pygame.display.update()
-    fpsClock.tick(30) # pause to run the loop at 30 frames per second
+    fpsClock.tick(60) # pause to run the loop at 30 frames per second
