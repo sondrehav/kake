@@ -1,14 +1,12 @@
 import pygame, sys
 from pygame.locals import *
 
-#class player:
-    
-    
+width, height = 640, 480    
 
 pygame.init()
 fpsClock = pygame.time.Clock()
 
-windowSurfaceObj = pygame.display.set_mode((640, 480))
+windowSurfaceObj = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Pygame Cheat Sheet')
 
 catSurfaceObj = pygame.image.load('cat.png')
@@ -103,5 +101,17 @@ while True:
         playerXPos = 0
         playerXVel = 0
 
+    if playerXPos > width - 50:
+        playerXPos = width - 50
+        playerXVel = 0
+    
+    if playerYPos < 0:
+        playerYPos = 0
+        playerYVel = 0
+
+    if playerYPos > height - 50:
+        playerYPos = height - 50
+        playerYVel = 0
+        
     pygame.display.update()
     fpsClock.tick(30) # pause to run the loop at 30 frames per second
