@@ -2,6 +2,7 @@ import pygame, sys
 from pygame.locals import *
 
 from Player import *
+from enemy import *
 
 width, height = 640, 480    
 
@@ -18,7 +19,8 @@ whiteColor = pygame.Color(255, 255, 255)
 blackColor = pygame.Color(0, 0, 0)
 mousex, mousey = 0, 0
 
-player = Player()
+player = player()
+enemy = enemy()
 player.xpos = 100
 player.ypos = 100
 
@@ -40,6 +42,7 @@ while True:
     
 
     player.update(events)
+    enemy.update(events)
 
     if player.xpos < 0:
         player.xpos = 0
@@ -54,6 +57,7 @@ while True:
 
 
     player.render(windowSurfaceObj)
+    enemy.render(windowSurfaceObj)
 
     pygame.display.update()
     fpsClock.tick(60) # pause to run the loop at 30 frames per second
