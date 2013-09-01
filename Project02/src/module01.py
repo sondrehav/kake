@@ -99,5 +99,9 @@ while True:
     playerXPos += playerXVel
     playerYPos += playerYVel
     
+    if playerXPos < 0:
+        playerXPos = 0
+        playerXVel = 0
+
     pygame.display.update()
     fpsClock.tick(30) # pause to run the loop at 30 frames per second
