@@ -18,7 +18,7 @@ whiteColor = pygame.Color(255, 255, 255)
 blackColor = pygame.Color(0, 0, 0)
 mousex, mousey = 0, 0
 
-player = player()
+player = Player()
 player.xpos = 100
 player.ypos = 100
 
