@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-MaxSpeed = 3
+MaxSpeed = 3 #Sette inn i selve klassen?
 Acc = 0.15
 
 class Entity(object):
@@ -14,6 +14,8 @@ class Entity(object):
         self.yvel = 0
         self.xacc = 0
         self.yacc = 0
+        #vil det ikke være lurt å bare ha en vel og en acc, og i stedset ha en retning?
+        #så splitter man det bare ved basic trigonometri.. Slik jeg har gjort det i enemy.py.
 
         self.moveLeft = False
         self.moveUp = False

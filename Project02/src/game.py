@@ -3,6 +3,7 @@ from pygame.locals import *
 
 from player import *
 from enemy import *
+from message import *
 
 width, height = 640, 480    
 
@@ -21,10 +22,17 @@ mousex, mousey = 0, 0
 
 player = Player()
 enemy = enemy()
+message = msg()
+
 player.xpos = 100
 player.ypos = 100
 
-fontObj = pygame.font.Font('freesansbold.ttf', 32)
+#test:
+message.out('test1')
+message.out('test2')
+message.out('test3')
+message.out('test4')
+message.setPosition(20,20)
 
 while True:
     windowSurfaceObj.fill(whiteColor)
@@ -39,10 +47,12 @@ while True:
         if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 pygame.event.post(pygame.event.Event(QUIT))
-    
+            if event.key == K_F12: #Les: message.py, linje 31. Dette er midlertidig..
+                message.toggle()
 
     player.update(events)
     enemy.update(events)
+    #message.update(events)
 
     if player.xpos < 0:
         player.xpos = 0
@@ -62,9 +72,9 @@ while True:
         player.yacc = 0
 
 
-
+    message.render(windowSurfaceObj)
     player.render(windowSurfaceObj)
     enemy.render(windowSurfaceObj)
 
     pygame.display.update()
-    fpsClock.tick(60) # pause to run the loop at 30 frames per second
+    fpsClock.tick(60) # pause to run the loop at 60 frames per second

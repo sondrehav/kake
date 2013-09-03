@@ -3,12 +3,9 @@ import math
 from pygame.locals import *
 from random import randint
 
-PlayerImageName = "gun.png"
-PlayerMaxSpeed = 5
-PlayerAcc = 0.25
-
 class enemy:
     def __init__(self):
+        self.PlayerImageName = "gun.png"
         self.xpos = 0
         self.ypos = 0
         self.vel = 0
@@ -17,7 +14,7 @@ class enemy:
         self.xdest = 0
         self.ydest = 0
 
-        self.surfaceObject = pygame.image.load(PlayerImageName)
+        self.surfaceObject = pygame.image.load(self.PlayerImageName)
         self.width = self.surfaceObject.get_width()
         self.height = self.surfaceObject.get_height()
         
@@ -45,4 +42,3 @@ class enemy:
         self.direction = math.atan2((self.ydest - self.ypos), (self.xdest - self.xpos))
         self.vel = 1
         self.state = 1
-        print('getNewState')

@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from entity import Entity
 
-MaxSpeed = 5
+MaxSpeed = 5 #Sette inn i selve klassen?
 Acc = 0.25
 
 
