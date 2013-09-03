@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 
-from Player import *
+from player import *
 from enemy import *
 
 width, height = 640, 480    
@@ -19,7 +19,7 @@ whiteColor = pygame.Color(255, 255, 255)
 blackColor = pygame.Color(0, 0, 0)
 mousex, mousey = 0, 0
 
-player = player()
+player = Player()
 enemy = enemy()
 player.xpos = 100
 player.ypos = 100
@@ -52,7 +52,14 @@ while True:
         player.xpos = width-player.width
         player.xvel =0
         player.moveRight = False
-
+    if player.ypos < 0:
+        player.ypos = 0
+        player.yvel = 0
+        player.yacc = 0 
+    elif player.ypos > height - player.height:
+        player.ypos = height - player.height
+        player.yvel = 0
+        player.yacc = 0
 
 
 

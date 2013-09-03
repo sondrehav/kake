@@ -2,13 +2,13 @@ import pygame
 from pygame.locals import *
 from entity import Entity
 
-ImageName = "cat.png"
 MaxSpeed = 5
 Acc = 0.25
 
 
 class Player(Entity):
     def __init__(self):
+        self.imageName = "cat.png"     
         super(Player, self).__init__()
 
     def update(self, event):

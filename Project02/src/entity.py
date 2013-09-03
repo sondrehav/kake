@@ -1,12 +1,13 @@
 import pygame
 from pygame.locals import *
 
-ImageName = "defualtimage.png"
 MaxSpeed = 3
 Acc = 0.15
 
 class Entity(object):
     def __init__(self):
+        if self.imageName == None:
+            self.imageName = "defaultimage.png"
         self.xpos = 0
         self.ypos = 0
         self.xvel = 0
@@ -19,7 +20,7 @@ class Entity(object):
         self.moveRight = False
         self.moveDown = False
 
-        self.surfaceObject = pygame.image.load(ImageName)
+        self.surfaceObject = pygame.image.load(self.imageName)
         self.width = self.surfaceObject.get_width()
         self.height = self.surfaceObject.get_height() 
 
@@ -37,18 +38,27 @@ class Entity(object):
         if self.moveDown:
            if self.yvel < MaxSpeed:
                 self.yvel += Acc
-        
+
+       # Bevegelsen langs x aksen skal avta 
         if self.moveLeft == False and self.moveRight == False:
             if self.xvel > 0:
                 self.xvel -= Acc
             elif self.xvel < 0:
                 self.xvel += Acc
+            # Farten er sA liten at den vil hoppe frem og tilbake
+            # mellom + og -. Sett den til 0
+            if abs(self.xvel) < abs(Acc):
+                self.xvel = 0
+                self.xacc = 0
                 
         if self.moveUp == False and self.moveDown == False:
             if self.yvel > 0:
                 self.yvel -= Acc
             elif self.yvel < 0:
                 self.yvel += Acc
+            if abs(self.yvel) < abs(Acc):
+                self.yvel = 0
+                self.yacc = 0
         
         self.xpos += self.xvel
         self.ypos += self.yvel
